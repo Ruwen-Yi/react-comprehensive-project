@@ -15,6 +15,14 @@ The main purpose of this project is to create a React application that utilizes 
 - **Components**: Create reusable and modular components to enhance code maintainability and reusability. Understand the concept of composition and separation of concerns.
 - **Routing**: Implement routing in your React application using React Router. Understand how to navigate between different pages and handle dynamic routing.
 
+## Getting Started
+To get started with this project, follow the steps below:
+
+Clone the project repository: git clone
+Install the project dependencies: npm install
+Start the development server: npm start
+Open your browser and visit http://localhost:3000 to see the application in action.
+
 ## Resources
 - [React Documentation](https://react.dev/learn)
 - [React Router Documentation](https://reactrouter.com/en/main/start/tutorial)

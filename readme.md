@@ -18,10 +18,10 @@ The main purpose of this project is to create a React application that utilizes 
 ## Getting Started
 To get started with this project, follow the steps below:
 
-Clone the project repository: `git clone`.
-Install the project dependencies: `npm install`.
-Start the development server: `npm start`.
-Open your browser and visit `http://localhost:3000` to see the application in action.
+1. Clone the project repository: `git clone`
+2. Install the project dependencies: `npm install`
+3. Start the development server: `npm start`
+4. Open your browser and visit `http://localhost:3000` to see the application in action.
 
 ## Resources
 - [React Documentation](https://react.dev/learn)

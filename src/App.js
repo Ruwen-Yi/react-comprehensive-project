@@ -1,5 +1,5 @@
 import "./styles.css";
-import MemberList from "./MemberList";
+import MemberList from "./MemberList.js";
 
 export default function App() {
   return (

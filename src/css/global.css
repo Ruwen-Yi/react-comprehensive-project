@@ -3,6 +3,22 @@ html {
 }
 
 body {
-    margin: 0;
-    background: radial-gradient(circle, rgba(225,232,255,1) 0%, rgba(167,233,255,1) 48%, rgba(227,233,255,1) 100%);
+    width: 100vw;       /* set to 100% viewport width */
+    min-height: 100vh;  /* set to 100% viewport height */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: linear-gradient(90deg, rgba(155,230,140,1) 0%, rgba(138,243,255,1) 100%);
+}
+
+*,
+*::before,
+*::after {              /* ::before/after make sure this style also applies to any pseudo-elements */
+    margin:0;           /* avoid being disturbed by default spacing */
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
 }

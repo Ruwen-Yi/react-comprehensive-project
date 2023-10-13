@@ -1,0 +1,8 @@
+html {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    background: radial-gradient(circle, rgba(225,232,255,1) 0%, rgba(167,233,255,1) 48%, rgba(227,233,255,1) 100%);
+}

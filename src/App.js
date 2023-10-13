@@ -1,4 +1,5 @@
-import "./styles.css";
+import "./css/global.css";
+
 import MemberList from "./MemberList.js";
 import TodoList from "./TodoList.js";
 

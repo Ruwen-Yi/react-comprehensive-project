@@ -5,6 +5,7 @@ const StyledMemberBoard = styled.div`
     width: 40vw;
     height: 10vh;
     padding: 10px;
+    box-shadow: 0px 0px 10px 5px #5e594f;
     background-color: #E8C499;
 
     display: flex;
@@ -14,6 +15,7 @@ const StyledMemberBoard = styled.div`
 const StyledArrow = styled.div`
     height: 100%;
     padding: 0.5em 0;
+    
     font-size: 24px;
     cursor: pointer;
 

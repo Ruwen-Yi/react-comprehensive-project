@@ -1,0 +1,12 @@
+.custom-checkbox input[type='checkbox'], .custom-checkbox input[type='checkbox']:checked {    
+    border-color: grey;
+    box-shadow: none;
+}
+
+.custom-checkbox input[type='checkbox']:checked {
+    background-color: grey;
+}
+
+.custom-checkbox input[type='checkbox']:checked + label {
+    text-decoration: line-through;
+}

@@ -3,13 +3,11 @@ import styled from 'styled-components';
 const StyledMember = styled.li`
     padding: 10px;
     background: #deaa6b;
-    border: none;
-    outline: none;
 
     color: white;
-    text-align: center;
     font-size: 30px;
     font-weight: bold;
+    text-align: center;
     
     cursor: pointer;
     display: inline-block;

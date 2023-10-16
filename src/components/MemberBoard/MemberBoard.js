@@ -6,17 +6,18 @@ let selectStyle = {
     backgroundColor: "transparent",
 }
 
-export default function MemberBoard() {
+export default function MemberBoard({members}) {
     return (
         <select
             className="form-select form-select-lg"
             aria-label=".form-select-lg example"
             style={selectStyle}
         >
-            <option selected="">Harry Potter</option>
-            <option value={1}>Harry Potter One</option>
-            <option value={2}>Harry Potter Two</option>
-            <option value={3}>Harry Potter Three</option>
+            {members.map(member => (
+                <option value={member}>
+                    {member}
+                </option>
+            ))}
         </select>
     )
 }

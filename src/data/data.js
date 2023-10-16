@@ -1,4 +1,4 @@
-[
+const data = [
     {
         "fstName":"Harry",
         "lstName":"Potter",
@@ -19,3 +19,4 @@
         ]
     }
 ]
+export default data;

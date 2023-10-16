@@ -1,5 +1,6 @@
 const data = [
     {
+        "id":0,
         "fstName":"Harry",
         "lstName":"Potter",
         "email":"harry.potter@gmail.com",
@@ -10,6 +11,7 @@ const data = [
         ]
     },
     {
+        "id":1,
         "fstName":"Peter",
         "lstName":"Parker",
         "email":"peter.parker@gmail.com",

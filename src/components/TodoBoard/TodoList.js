@@ -1,5 +1,4 @@
 import { CListGroup, CListGroupItem, CFormCheck, CButton } from '@coreui/react'
-import '@coreui/coreui/dist/css/coreui.min.css'
 import styled from "styled-components"
 
 const StyledCListGroupItem = styled(CListGroupItem)`

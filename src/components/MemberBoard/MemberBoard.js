@@ -1,45 +1,16 @@
-import styled from 'styled-components';
-import MemberList from './MemberList.js';
+import { CDropdown, CDropdownToggle, CDropdownMenu, CDropdownItem } from '@coreui/react'
 
-const StyledMemberBoard = styled.div`
-    width: 40vw;
-    height: 10vh;
-    padding: 10px;
-    box-shadow: 0px 0px 10px 5px #5e594f;
-    background-color: #E8C499;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-`
-const StyledArrow = styled.div`
-    height: 100%;
-    padding: 0.5em 0;
-    
-    font-size: 24px;
-    cursor: pointer;
-
-    &:hover {
-        font-weight: bold;
-        color: yellow;
-    }
-`
-const StyledMemberListContainer = styled.div`
-    width: auto;
-    height: 100%;
-    margin: 0 5px;
-    white-space: nowrap;
-    overflow: hidden;
-`
 
 export default function MemberBoard() {
     return (
-        <StyledMemberBoard>
-            <StyledArrow>&#8592;</StyledArrow>
-            <StyledMemberListContainer>
-                <MemberList />
-            </StyledMemberListContainer>
-            <StyledArrow>&#8594;</StyledArrow>
-        </StyledMemberBoard>
+        <CDropdown variant="btn-group">
+            <CDropdownToggle color="secondary" size="lg">Large button</CDropdownToggle>
+            <CDropdownMenu>
+                <CDropdownItem href="#">Action</CDropdownItem>
+                <CDropdownItem href="#">Another action</CDropdownItem>
+                <CDropdownItem href="#">Something else here</CDropdownItem>
+                <CDropdownItem href="#">Separated link</CDropdownItem>
+            </CDropdownMenu>
+        </CDropdown>
     )
 }

@@ -14,10 +14,10 @@ const StyledTodoBoard = styled.div`
     display: flex;
     justify-content: center;
 `
-export default function TodoBoard() {
+export default function TodoBoard(props) {
     return(
         <StyledTodoBoard>
-            <TodoList />
+            <TodoList {...props}/>
         </StyledTodoBoard>
     )
 }

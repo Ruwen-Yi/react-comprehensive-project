@@ -8,22 +8,24 @@ import data from "./data/data.js";
 
 
 export default function App() {
-    let memberList = data.map(member => {
+    const [selectedMember, setSelectedMember] = useState(1);
+    const memberList = data.map(member => {
         return {
             id: member.id,
             name: `${member.fstName} ${member.lstName}`
         }
     })
-
-    const [selectedMember, setSelectedMember] = useState(0);
-
+    const todoList = data.find((item) => item.id===selectedMember).list;
+    
     return (
         <div className={styles.container}>
             <MemberBoard 
                 memberList={memberList} 
                 selectedMember={selectedMember}
             />
-            <TodoBoard />
+            <TodoBoard 
+                todoList={todoList}
+            />
         </div>
     );
 }

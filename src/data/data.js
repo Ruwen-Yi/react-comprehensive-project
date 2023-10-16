@@ -16,8 +16,8 @@ const data = [
         "lstName":"Parker",
         "email":"peter.parker@gmail.com",
         "list":[
-            {"id":0, "text":"selects suit materials", "state":"done"},
-            {"id":1, "text":"designs a web-shooter", "state":"undo"}
+            {"id":0, "text":"selects suit materials", "state":"undo"},
+            {"id":1, "text":"designs a web-shooter", "state":"done"}
         ]
     }
 ]

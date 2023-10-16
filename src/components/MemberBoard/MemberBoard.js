@@ -15,7 +15,6 @@ export default function MemberBoard({ memberList, selectedMember }) {
         >
             {memberList.map(member => {
                 const {id, name} = member;
-                
                 return (
                     <option 
                         value={id}

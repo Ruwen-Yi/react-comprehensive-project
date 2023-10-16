@@ -6,8 +6,8 @@ const StyledTodoBoard = styled.div`
     height: 80vh;
     padding-top: 5vh;
     margin-top: 5vh;
+    border-radius: 2%;
     box-shadow: 0px 0px 10px 5px #5e594f;
-    background-color: white;
 
     font-size: 30px;
 

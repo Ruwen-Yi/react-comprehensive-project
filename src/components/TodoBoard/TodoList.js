@@ -4,6 +4,8 @@ import '@coreui/coreui/dist/css/coreui.min.css'
 import styled from "styled-components"
 
 const StyledCListGroupItem = styled(CListGroupItem)`
+    width:35vw;
+
     input[type='checkbox'],
     input[type='checkbox']:checked {    
         border-color: grey;
@@ -19,12 +21,19 @@ const StyledCListGroupItem = styled(CListGroupItem)`
     }
 `
 
+const StyledButton = styled.button`
+    display: inline-block;
+`
+
 export default function TodoList() {
     return (
         <CListGroup>
             <StyledCListGroupItem>
                 <CFormCheck hitArea="full" label="purchases a wand" value="" id="firstCheckboxStretched" />
+                <StyledButton>Edit</StyledButton>
+                <button>Cancel</button>
             </StyledCListGroupItem>
+            
             <StyledCListGroupItem>
                 <CFormCheck hitArea="full" label="purchases a wand" value="" id="secondCheckboxStretched" />
             </StyledCListGroupItem>

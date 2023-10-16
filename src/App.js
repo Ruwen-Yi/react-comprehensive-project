@@ -1,5 +1,5 @@
 import styles from "./css/App.module.css";      // implement scoped style by css-modules
-import '@coreui/coreui/dist/css/coreui.min.css'
+
 
 import "./css/global.css";
 import MemberBoard from "./components/MemberBoard/MemberBoard.js";

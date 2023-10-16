@@ -1,6 +1,6 @@
 import { CListGroup, CListGroupItem, CFormCheck } from '@coreui/react'
 import '@coreui/coreui/dist/css/coreui.min.css'
-import '../../css/custom-checkbox.css'
+import './custom-checkbox.css'
 
 export default function TodoListAlternative() {
     return (

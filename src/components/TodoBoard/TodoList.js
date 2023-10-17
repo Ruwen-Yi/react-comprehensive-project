@@ -35,7 +35,6 @@ let labelContainerClasses = "d-inline-block text-wrap text-break";
 let buttonContainerClasses = "d-inline-flex align-items-end z-1";
 
 export default function TodoList({ todoList }) {
-    console.log(todoList)
     return (
         <CListGroup>
             {todoList.map((todo) => (

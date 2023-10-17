@@ -12,6 +12,7 @@ export default function MemberBoard({ memberList, selectedMember }) {
             className="form-select form-select-lg"
             aria-label=".form-select-lg example"
             style={selectStyle}
+            defaultValue={selectedMember}
         >
             {memberList.map(member => {
                 const {id, name} = member;
@@ -19,7 +20,6 @@ export default function MemberBoard({ memberList, selectedMember }) {
                     <option 
                         value={id}
                         key={id}
-                        selected={selectedMember === id}
                     >
                         {name}
                     </option>

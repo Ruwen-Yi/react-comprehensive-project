@@ -1,5 +1,6 @@
 import '@coreui/coreui/dist/js/coreui.bundle.min.js'
 
+// the custom style for the member selection list
 let selectStyle = {
     borderWidth: "0",
     boxShadow: "0px 0px 10px 5px #5e594f",

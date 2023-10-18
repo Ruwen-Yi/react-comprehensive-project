@@ -9,9 +9,9 @@ export default function TodoList({ todoList }) {
                     <div className='custom-list-group-item-container'>
                         <div className="custom-input-label-wrapper">
                             <input 
-                                className="form-check-input me-1" 
+                                className="form-check-input" 
                                 type="checkbox" 
-                                checked={isChecked} 
+                                defaultChecked={isChecked} 
                             />
                             <label className="list-group-item">{text}</label>
                         </div>

@@ -1,0 +1,46 @@
+/* custom style */
+.custom-list-group-item-container {
+    width:37vw;
+    border: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    
+    font-size: 1.5rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.custom-list-group-item-container:hover {
+    border: 3px solid #212631;
+    border-radius: 0;
+}
+.custom-input-label-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.custom-input-label-wrapper input[type='checkbox'] {
+    margin-top: 0;
+}
+
+/* override the CoreUI classes */
+.list-group-item {
+    padding-left: 0.5rem;
+    border: 0;
+    background-color: transparent;
+}
+.form-check-input {
+    margin-top: 0;
+    border: 3px solid #212631;
+    background-color: transparent;
+}
+.form-check-input:checked {
+    border-color: #a4a9ac;
+    background-color: #a4a9ac;
+}
+.form-check-input:checked + .list-group-item {
+    font-style: italic;
+    color: #a4a9ac;
+    text-decoration: line-through;
+}

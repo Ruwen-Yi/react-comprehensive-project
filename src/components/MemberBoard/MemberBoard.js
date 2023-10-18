@@ -7,13 +7,14 @@ let selectStyle = {
     backgroundColor: "transparent",
 }
 
-export default function MemberBoard({ memberList, selectedMember }) {
+export default function MemberBoard({ memberList, selectedMember, onMemberChange }) {
     return (
         <select
             className="form-select form-select-lg"
             aria-label=".form-select-lg example"
             style={selectStyle}
             defaultValue={selectedMember}
+            onChange={onMemberChange}
         >
             {memberList.map(member => {
                 const {id, name} = member;

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import TodoList from "./TodoList.js";
+import styled from 'styled-components';
+import TodoList from './TodoList.js';
 
 const StyledTodoBoard = styled.div`
     width: 40vw;

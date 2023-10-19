@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import styles from "./css/App.module.css";      // implement scoped style by css-modules
+import styles from './css/App.module.css';      // implement scoped style by css-modules
 
-import MemberBoard from "./components/MemberBoard/MemberBoard.js";
-import TodoBoard from "./components/TodoBoard/TodoBoard.js";
-import data from "./data/data.js";
+import MemberBoard from './components/MemberBoard/MemberBoard.js';
+import TodoBoard from './components/TodoBoard/TodoBoard.js';
+import data from './data/data.js';
 
 
 export default function App() {

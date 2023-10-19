@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 export default function TodoList({ todoList, selectedMember }) {
 
     return (
@@ -13,16 +15,20 @@ export default function TodoList({ todoList, selectedMember }) {
 }
 
 function TodoItem({ id, text, state}) {
-    const isChecked = state === 'done' ? true : false;
-        
+    const [isEditing, setIsEditing] = useState(false);
+
+    const EditOrSaveBtn = isEditing ? 'Save' : 'Edit';
+    
     function onEdit(e) {
+        setIsEditing(!isEditing);
+    }
+    
+    function onDelete(e) {
         
     }
 
-    function onDelete(e) {
-
-    }
-
+    const isChecked = state === 'done' ? true : false;
+    
     return (
         <div className='custom-list-group-item-container'>
             <div className="custom-input-label-wrapper">
@@ -44,7 +50,7 @@ function TodoItem({ id, text, state}) {
                     className="btn btn-dark rounded-pill me-1"
                     onClick={onEdit}    
                 >
-                    Edit
+                    {EditOrSaveBtn}
                 </button>
                 <button 
                     className="btn btn-dark rounded-pill"

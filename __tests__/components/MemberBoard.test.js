@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { render, screen } from '@testing-library/react';
-import MemberBoard from '../../src/components/MemberBoard/MemberBoard.js';
+import MemberBoard from "../../src/components/MemberBoard/MemberBoard.js";
 
 describe('MemberBoard component', () => {
     test('renders members selection list', () => {

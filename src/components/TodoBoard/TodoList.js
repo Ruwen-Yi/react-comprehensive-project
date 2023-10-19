@@ -2,11 +2,11 @@ export default function TodoList({ todoList }) {
     return (
         <div className="list-group">
             {todoList.map((todo) => {
-                const { text, state } = todo;
+                const { id, text, state } = todo;
                 const isChecked = state === 'done' ? true : false;
                 
                 return (
-                    <div className='custom-list-group-item-container'>
+                    <div className='custom-list-group-item-container' key={id}>
                         <div className="custom-input-label-wrapper">
                             <input 
                                 className="form-check-input" 

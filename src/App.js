@@ -40,6 +40,7 @@ export default function App() {
             />
             <TodoBoard 
                 todoList={todoList}
+                selectedMember={selectedMember}
             />
         </div>
     );

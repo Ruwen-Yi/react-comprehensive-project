@@ -1,5 +1,4 @@
-
-export default function TodoList({ todoList }) {
+export default function TodoList({ todoList, selectedMember }) {
     
     return (
         <div className="list-group">
@@ -10,7 +9,7 @@ export default function TodoList({ todoList }) {
                 return (
                     <div 
                         className='custom-list-group-item-container' 
-                        key={id}
+                        key={`${selectedMember}-${id}`}
                     >
                         <div className="custom-input-label-wrapper">
                             <input 

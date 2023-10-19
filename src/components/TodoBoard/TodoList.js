@@ -1,4 +1,6 @@
+
 export default function TodoList({ todoList }) {
+    
     return (
         <div className="list-group">
             {todoList.map((todo) => {
@@ -6,14 +8,23 @@ export default function TodoList({ todoList }) {
                 const isChecked = state === 'done' ? true : false;
                 
                 return (
-                    <div className='custom-list-group-item-container' key={id}>
+                    <div 
+                        className='custom-list-group-item-container' 
+                        key={id}
+                    >
                         <div className="custom-input-label-wrapper">
                             <input 
                                 className="form-check-input" 
                                 type="checkbox" 
-                                defaultChecked={isChecked} 
+                                defaultChecked={isChecked}
+                                id={id}
                             />
-                            <label className="list-group-item">{text}</label>
+                            <label 
+                                className="list-group-item"
+                                htmlFor={id}
+                            >
+                                {text}
+                            </label>
                         </div>
                         <div className='custom-buttons-wrapper'>
                             <button className="btn btn-dark rounded-pill me-1">Edit</button>
@@ -25,10 +36,3 @@ export default function TodoList({ todoList }) {
         </div>
     )
 }
-{/* <CListGroup>
-                {todoList.map((todo) => (
-                    <StyledCListGroupItem key={todo.id}>
-                        <TodoItem {...todo} />
-                    </StyledCListGroupItem>
-                ))}
-            </CListGroup> */}

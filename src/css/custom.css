@@ -29,6 +29,8 @@
     padding-left: 0.5rem;
     border: 0;
     background-color: transparent;
+
+    user-select: none;
 }
 .form-check-input {
     margin-top: 0;

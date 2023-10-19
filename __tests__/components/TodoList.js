@@ -1,11 +1,11 @@
 /**
  * @jest-environment jsdom
  */
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
-import userEvent from "@testing-library/user-event";
+import userEvent from '@testing-library/user-event';
 
-import TodoList from "../../src/components/TodoBoard/TodoList.js";
+import TodoList from '../../src/components/TodoBoard/TodoList.js';
 
 describe('TodoList component', () => {
     const todoList = [

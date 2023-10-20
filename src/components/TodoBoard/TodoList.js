@@ -15,6 +15,17 @@ export default function TodoList({ todoList, selectedMember, onTodoChange }) {
     )
 }
 
+/**
+ * display a todo item
+ * @typedef {Object} props
+ * @property {Object} todo a todo item
+ * @property {Function} onTodoChange replace the old todo item with the new one
+ *  
+ * @typedef {Object} todo a todo item
+ * @property {number} id the id of the todo item
+ * @property {string} text the content of the todo item
+ * @property {string} state the state of the todo item, either 'done' or 'undo'
+ */
 function TodoItem({ todo, onTodoChange}) {
     const { id, text, state} = todo;
 

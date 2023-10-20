@@ -41,15 +41,27 @@ export default function App() {
     }
 
     /**
-     * update the todo list with the new todo item
+     * replace the old todo item with the new one
      * this function is fired when the text or state of a todo item changed
-     * @param {Object} newTodo 
+     * @typedef {Object} newTodo
+     * @property {number} id the id of the todo item
+     * @property {string} text the content of the todo item
+     * @property {string} state the state of the todo item, either 'done' or 'undo'
      */
     function onTodoChange(newTodo) {
-        // console.log(newTodo);
-        const newTodoId = newTodo.id;
         const newTodoList = todoList.map((todo) => (
-            todo.id === newTodoId ? newTodo : todo
+            todo.id === newTodo.id ? newTodo : todo
+        ));
+        setTodoList(newTodoList);
+    }
+
+    /**
+     * delete a todo item with its id
+     * @param {number} deletedTodoId 
+     */
+    function onTodoDelete(deletedTodoId) {
+        const newTodoList = todoList.filter((todo) => (
+            todo.id !== deletedTodoId
         ));
         setTodoList(newTodoList);
     }

@@ -1,5 +1,12 @@
 import { useState } from 'react';
 
+/**
+ * display the selected member's todo list
+ * @typedef {Object} props
+ * @property {Array} todoList
+ * @property {number} selectedMember the selected member's id
+ * @property {Function} onTodoChange replace the old todo item with the new one
+ */
 export default function TodoList({ todoList, selectedMember, onTodoChange }) {
 
     return (

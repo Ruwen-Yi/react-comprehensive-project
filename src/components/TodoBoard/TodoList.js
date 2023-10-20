@@ -18,10 +18,14 @@ export default function TodoList({ todoList, selectedMember, onTodoChange }) {
 function TodoItem({ todo, onTodoChange}) {
     const { id, text, state} = todo;
 
+    // react state - control whether the todo item is being editing
     const [isEditing, setIsEditing] = useState(false);
 
     const EditOrSaveBtn = isEditing ? 'Save' : 'Edit';
     const EditOrSaveHandler = isEditing ? onSave : onEdit;
+
+    // the todo content is an text input when being editing
+    // otherwise it is an uneditable label
     const todoContent = isEditing ? 
         (<input 
             className="list-group-item"
@@ -35,6 +39,10 @@ function TodoItem({ todo, onTodoChange}) {
             {text}
         </label>)
         
+    /**
+     * this event listener fires when the text or state of a todo item changed
+     * @param {Event} e 
+     */
     function onChange(e) {
         let newTodo = {...todo};
 
@@ -45,21 +53,17 @@ function TodoItem({ todo, onTodoChange}) {
             newTodo.state = e.target.checked ? 'done' : 'undo';
         }
         
-        onTodoChange(newTodo);
+        onTodoChange(newTodo);      // update the todo list with the new todo item
     }
 
-    function onSave(e) {
-        setIsEditing(false);
-    }
-
-    function onEdit(e) {
-        setIsEditing(true);
-    }
+    const onSave = () => setIsEditing(false);
+    const onEdit = () => setIsEditing(true);
     
     function onDelete(e) {
         
     }
 
+    // a todo item is checked if its state is 'done'
     const isChecked = state === 'done' ? true : false;
     
     return (
@@ -73,13 +77,6 @@ function TodoItem({ todo, onTodoChange}) {
                     onChange={onChange}
                 />
                 {todoContent}
-                {/* 
-                <label 
-                    className="list-group-item"
-                    htmlFor={id}
-                >
-                    {text}
-                </label> */}
             </div>
             <div className='custom-buttons-wrapper'>
                 <button 

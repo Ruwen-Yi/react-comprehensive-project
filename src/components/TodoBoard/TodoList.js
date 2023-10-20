@@ -7,7 +7,7 @@ import { useState } from 'react';
  * @property {number} selectedMember the selected member's id
  * @property {Function} onTodoChange replace the old todo item with the new one
  */
-export default function TodoList({ todoList, selectedMember, onTodoChange }) {
+export default function TodoList({ todoList, selectedMember, onTodoChange, onTodoDelete }) {
 
     return (
         <div className="list-group">
@@ -16,6 +16,7 @@ export default function TodoList({ todoList, selectedMember, onTodoChange }) {
                     key={`${selectedMember}-${todo.id}`}
                     todo={todo}
                     onTodoChange={onTodoChange}
+                    onTodoDelete={onTodoDelete}
                 />
             ))}
         </div>
@@ -27,13 +28,14 @@ export default function TodoList({ todoList, selectedMember, onTodoChange }) {
  * @typedef {Object} props
  * @property {Object} todo a todo item
  * @property {Function} onTodoChange replace the old todo item with the new one
+ * @property {Function} onTodoDelete delete a todo item with its id
  *  
  * @typedef {Object} todo a todo item
  * @property {number} id the id of the todo item
  * @property {string} text the content of the todo item
  * @property {string} state the state of the todo item, either 'done' or 'undo'
  */
-function TodoItem({ todo, onTodoChange}) {
+function TodoItem({ todo, onTodoChange, onTodoDelete}) {
     const { id, text, state} = todo;
 
     // a todo item is checked if its state is 'done'
@@ -69,7 +71,7 @@ function TodoItem({ todo, onTodoChange}) {
      * this event listener fires when the text or state of a todo item changed
      * @param {Event} e 
      */
-    function onChange(e) {
+    const onChange = (e) => {
         let newTodo = {...todo};
 
         switch(e.target.type){
@@ -81,14 +83,15 @@ function TodoItem({ todo, onTodoChange}) {
                 break;
         }
         
-        // update the todo list with the new todo item
+        // replace the old todo item with the new one
         onTodoChange(newTodo);      
     }
 
-    
-    function onDelete(e) {
-        
-    }
+    /**
+     * this event listener fires when the delete button of a todo item is clicked
+     * it resulting in deleting a todo item
+     */
+    const onDelete = () => onTodoDelete(todo.id);
     
     return (
         <div className='custom-list-group-item-container'>

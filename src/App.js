@@ -80,6 +80,7 @@ export default function App() {
                 todoList={todoList}
                 selectedMember={selectedMember}
                 onTodoChange={onTodoChange}
+                onTodoDelete={onTodoDelete}
             />
         </div>
     );

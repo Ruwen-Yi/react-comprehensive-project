@@ -72,14 +72,17 @@ function TodoItem({ todo, onTodoChange}) {
     function onChange(e) {
         let newTodo = {...todo};
 
-        if (e.target.type === 'text') {
-            newTodo.text = e.target.value;
-        }
-        else if (e.target.type === 'checkbox') {
-            newTodo.state = e.target.checked ? 'done' : 'undo';
+        switch(e.target.type){
+            case 'text':
+                newTodo.text = e.target.value;
+                break;
+            case 'checkbox':
+                newTodo.state = e.target.checked ? 'done' : 'undo';
+                break;
         }
         
-        onTodoChange(newTodo);      // update the todo list with the new todo item
+        // update the todo list with the new todo item
+        onTodoChange(newTodo);      
     }
 
     

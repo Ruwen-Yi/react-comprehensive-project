@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import styles from './css/App.module.css';      // implement scoped style by css-modules
+import styles from './css/App.module.css';
 
 import MemberBoard from './components/MemberBoard/MemberBoard.js';
 import TodoBoard from './components/TodoBoard/TodoBoard.js';
@@ -35,7 +35,9 @@ export default function App() {
      * @param {Event} e 
      */
     function onMemberChange(e) {
-        const nextId = +e.target.value;     // convert the string value to a number
+        // convert the string value to a number
+        const nextId = +e.target.value;     
+        
         setSelectedMember(nextId);
         setTodoList(data.find((member) => member.id === nextId).list);
     }

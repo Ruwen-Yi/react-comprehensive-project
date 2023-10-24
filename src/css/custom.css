@@ -49,3 +49,6 @@
     color: #a4a9ac;
     text-decoration: line-through;
 }
+.form-select option {
+    background-color: #90eed7;
+}

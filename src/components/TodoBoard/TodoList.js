@@ -7,8 +7,12 @@ import { useState } from 'react';
  * @property {number} selectedMember the selected member's id
  * @property {Function} onTodoChange replace the old todo item with the new one
  */
-export default function TodoList({ todoList, selectedMember, onTodoChange, onTodoDelete }) {
+export default function TodoList({ todoList, selectedMember, onTodoChange, onTodoDelete, onTodoAdd }) {
 
+    function onClick(e) {
+        const newTodoText = e.target.previousElementSibling.value;
+        onTodoAdd(newTodoText);
+    }
     return (
         <div className="list-group">
             {todoList.map((todo) => (
@@ -19,6 +23,10 @@ export default function TodoList({ todoList, selectedMember, onTodoChange, onTod
                     onTodoDelete={onTodoDelete}
                 />
             ))}
+            <label htmlFor="">
+                <input type="text" />
+                <button onClick={onClick}>Add Todo</button>
+            </label>
         </div>
     )
 }
@@ -52,21 +60,6 @@ function TodoItem({ todo, onTodoChange, onTodoDelete}) {
     const onEdit = () => setIsEditing(true);
     const EditOrSaveHandler = isEditing ? onSave : onEdit;
 
-    // the todo content is an text input when a todo being editing
-    // otherwise it is an uneditable label
-    const todoContent = isEditing ? 
-        (<input 
-            className="list-group-item"
-            value={text}
-            onChange={onChange}
-        />) : 
-        (<label 
-            className="list-group-item"
-            htmlFor={id}
-        >
-            {text}
-        </label>)
-
     /**
      * this event listener fires when the text or state of a todo item changed
      * @param {Event} e 
@@ -92,6 +85,21 @@ function TodoItem({ todo, onTodoChange, onTodoDelete}) {
      * it resulting in deleting a todo item
      */
     const onDelete = () => onTodoDelete(todo.id);
+
+    // the todo content is an text input when a todo being editing
+    // otherwise it is an uneditable label
+    const todoContent = isEditing ? 
+        (<input 
+            className="list-group-item"
+            value={text}
+            onChange={onChange}
+        />) : 
+        (<label 
+            className="list-group-item"
+            htmlFor={id}
+        >
+            {text}
+        </label>)
     
     return (
         <div className='custom-list-group-item-container'>

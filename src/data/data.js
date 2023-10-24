@@ -8,7 +8,8 @@ const data = [
             {"id":0, "text":"purchases a wand", "state":"done"},
             {"id":1, "text":"buys school textbooks", "state":"undo"},
             {"id":2, "text":"buys a cauldron", "state":"undo"}
-        ]
+        ],
+        "nextId":3
     },
     {
         "id":1,
@@ -18,7 +19,8 @@ const data = [
         "list":[
             {"id":0, "text":"selects suit materials", "state":"undo"},
             {"id":1, "text":"designs a web-shooter", "state":"done"}
-        ]
+        ],
+        "nextId":2
     }
 ]
 export default data;

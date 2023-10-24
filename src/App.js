@@ -43,6 +43,25 @@ export default function App() {
     }
 
     /**
+     * add a new todo item
+     * @param {string} newTodoText 
+     */
+    function onTodoAdd(newTodoText) {
+        const newTodo = {
+            id: data.find((member) => member.id === selectedMember).nextId,
+            text: newTodoText,
+            state: 'undo'
+        }
+        data.find((member) => member.id === selectedMember).nextId++;
+        
+        const newTodoList = [
+            ...todoList,
+            newTodo
+        ]
+        setTodoList(newTodoList);
+    }
+
+    /**
      * replace the old todo item with the new one
      * this function is fired when the text or state of a todo item changed
      * @typedef {Object} newTodo
@@ -81,6 +100,7 @@ export default function App() {
                 selectedMember={selectedMember}
                 onTodoChange={onTodoChange}
                 onTodoDelete={onTodoDelete}
+                onTodoAdd={onTodoAdd}
             />
         </div>
     );

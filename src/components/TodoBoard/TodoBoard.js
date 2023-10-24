@@ -16,8 +16,10 @@ const StyledTodoBoard = styled.div`
 `
 export default function TodoBoard(props) {
     return(
+        <>
         <StyledTodoBoard>
             <TodoList {...props}/>
         </StyledTodoBoard>
+        </>
     )
 }

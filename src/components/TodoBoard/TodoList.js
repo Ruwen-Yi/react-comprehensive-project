@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
-import AddTodo from './AddTodo.js';
 import { flushSync } from 'react-dom';
+
+import AddTodo from './AddTodo.js';
 
 /**
  * display the selected member's todo list
@@ -60,7 +61,7 @@ function TodoItem({ todo, onTodoChange, onTodoDelete}) {
      * and set focus on the text input for the edited todo item
      */
     function onEdit() {
-        // synchronize the dom update
+        // update the dom immediately to make sure the text input exist on the screen
         flushSync(() => setIsEditing(true));
         // focus on the text input
         inputRef.current.focus();

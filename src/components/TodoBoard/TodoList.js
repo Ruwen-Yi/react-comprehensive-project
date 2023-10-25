@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import AddTodo from './AddTodo.js';
+import { flushSync } from 'react-dom';
 
 /**
  * display the selected member's todo list
@@ -46,19 +47,37 @@ function TodoItem({ todo, onTodoChange, onTodoDelete}) {
     // react state - control whether the todo item is being editing
     const [isEditing, setIsEditing] = useState(false);
 
+    // react ref - access the text input dom
+    const inputRef = useRef(null);
+
     // the button is a 'Save' button when a todo is being editing
     // otherwise it is a 'Edit' button 
     const EditOrSaveBtn = isEditing ? 'Save' : 'Edit';
-
-    const onSave = () => setIsEditing(false);
-    const onEdit = () => setIsEditing(true);
     const EditOrSaveHandler = isEditing ? onSave : onEdit;
+
+    /**
+     * this event listener enable editing a todo item
+     * and set focus on the text input for the edited todo item
+     */
+    function onEdit() {
+        // synchronize the dom update
+        flushSync(() => setIsEditing(true));
+        // focus on the text input
+        inputRef.current.focus();
+    }
+
+    /**
+     * this event listener disable editing a todo item
+     */
+    function onSave() {
+        setIsEditing(false);
+    }
 
     /**
      * this event listener fires when the text or state of a todo item changed
      * @param {Event} e 
      */
-    const onChange = (e) => {
+    function onChange(e) {
         let newTodo = {...todo};
 
         switch(e.target.type){
@@ -71,15 +90,17 @@ function TodoItem({ todo, onTodoChange, onTodoDelete}) {
         }
         
         // replace the old todo item with the new one
-        onTodoChange(newTodo);      
+        onTodoChange(newTodo);
     }
 
     /**
      * this event listener fires when the delete button of a todo item is clicked
      * it resulting in deleting a todo item
      */
-    const onDelete = () => onTodoDelete(todo.id);
-
+    function onDelete() {
+        onTodoDelete(todo.id);
+    } 
+    
     // the todo content is an text input when a todo being editing
     // otherwise it is an uneditable label
     const todoContent = isEditing ? 
@@ -88,6 +109,7 @@ function TodoItem({ todo, onTodoChange, onTodoDelete}) {
             type="text"
             value={text}
             onChange={onChange}
+            ref={inputRef}
         />) : 
         (<label 
             className="list-group-item"

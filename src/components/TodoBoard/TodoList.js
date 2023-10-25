@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AddTodo from './AddTodo.js';
 
 /**
  * display the selected member's todo list
@@ -9,10 +10,6 @@ import { useState } from 'react';
  */
 export default function TodoList({ todoList, selectedMember, onTodoChange, onTodoDelete, onTodoAdd }) {
 
-    function onClick(e) {
-        const newTodoText = e.target.previousElementSibling.value;
-        onTodoAdd(newTodoText);
-    }
     return (
         <div className="list-group">
             {todoList.map((todo) => (
@@ -23,10 +20,7 @@ export default function TodoList({ todoList, selectedMember, onTodoChange, onTod
                     onTodoDelete={onTodoDelete}
                 />
             ))}
-            <label htmlFor="">
-                <input type="text" />
-                <button onClick={onClick}>Add Todo</button>
-            </label>
+            <AddTodo onTodoAdd={onTodoAdd}/>
         </div>
     )
 }
@@ -91,6 +85,7 @@ function TodoItem({ todo, onTodoChange, onTodoDelete}) {
     const todoContent = isEditing ? 
         (<input 
             className="list-group-item"
+            type="text"
             value={text}
             onChange={onChange}
         />) : 

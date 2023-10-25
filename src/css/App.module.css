@@ -1,7 +1,12 @@
 .container {
     width: 40vw;
-    height: 80vh;
+    min-height: 80vh;
    
     display: flex;
     flex-direction: column;
+}
+@media (max-width: 1500px) {
+    .container {
+        width:80vw;
+    }
 }

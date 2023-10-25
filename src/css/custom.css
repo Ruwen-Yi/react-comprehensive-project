@@ -1,6 +1,6 @@
 /* custom style */
 .custom-list-group-item-container {
-    width:37vw;
+    width:100%;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     border: 0;
@@ -16,15 +16,58 @@
     border-radius: 0;
 }
 .custom-input-label-wrapper {
+    width: 75%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
+.custom-input-label-wrapper label {
+    width: auto;
+    word-break: break-all;
+}
 .custom-input-label-wrapper input[type='checkbox'] {
     margin-top: 0;
 }
+.custom-input-label-wrapper input[type='text'] {
+    width: 90%
+}
+.custom-buttons-wrapper {
+    flex-shrink: 1;
+}
+/* style the text input and the comfirm button for add new todo */
+.custom-add-new-todo {
+    padding: 0 0.5rem;
+    margin-top: 0.5rem;
 
+    display: flex;
+    justify-content: space-between;
+}
+.custom-add-new-todo input{
+    width: 70%;
+    height: 95%;
+
+    font-size: medium;
+}
+@media screen and (max-width: 768px) {
+    .custom-list-group-item-container {
+        flex-wrap: wrap;
+    }
+    .custom-input-label-wrapper {
+        width: 100%;
+    }
+    .custom-add-new-todo {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+    .custom-add-new-todo button{
+        margin: 0.5rem;
+    }
+}
 /* override the CoreUI classes */
+.list-group {
+    width: 100%;
+}
 .list-group-item {
     padding-left: 0.5rem;
     border: 0;
@@ -39,6 +82,8 @@
     margin-right: 0.25rem;
     border: 3px solid #212631;
     background-color: transparent;
+
+    flex-shrink: 0;
 }
 .form-check-input:checked {
     border-color: #a4a9ac;

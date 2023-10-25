@@ -4,11 +4,17 @@ export default function AddTodo({ onTodoAdd }) {
     const [todoText, setTodoText] = useState('');
     const inputRef = useRef(null);
 
-
+    /**
+     * update text when user typed
+     * @param {Event} e 
+     */
     function onChange(e) {
         setTodoText(e.target.value);
     }
 
+    /**
+     * add new todo item with the text and reset text
+     */
     function onClick() {
         todoText.trim() ? onTodoAdd(todoText) : inputRef.current.focus();
         setTodoText('');

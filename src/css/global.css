@@ -6,11 +6,11 @@ body {
     width: 100vw;       /* set to 100% viewport width */
     min-height: 100vh;  /* set to 100% viewport height */
 
+    background: linear-gradient(90deg, rgba(155,230,140,1) 0%, rgba(138,243,255,1) 100%);
+
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    background: linear-gradient(90deg, rgba(155,230,140,1) 0%, rgba(138,243,255,1) 100%);
 }
 
 *,
@@ -19,6 +19,7 @@ body {
     margin:0;           /* avoid being disturbed by default spacing */
     padding: 0;
     box-sizing: border-box;
+    
     text-decoration: none;
     list-style: none;
 }

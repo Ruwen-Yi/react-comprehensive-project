@@ -17,6 +17,7 @@
 }
 .custom-input-label-wrapper {
     width: 75%;
+
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -71,6 +72,7 @@
 .list-group-item {
     padding-left: 0.5rem;
     border: 0;
+
     background-color: transparent;
 
     -moz-user-select:none;
@@ -81,6 +83,7 @@
     margin-top: 0;
     margin-right: 0.25rem;
     border: 3px solid #212631;
+    
     background-color: transparent;
 
     flex-shrink: 0;

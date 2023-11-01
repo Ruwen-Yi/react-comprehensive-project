@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "repository": "https://github.com/Ruwen-Yi/react-comprehensive-project.git",
   "license": "MIT",
-  "description": "React example starter project",
+  "description": "a todo list application showcase React concepts",
   "keywords": [
-    "react",
-    "starter"
+    "react"
   ],
   "main": "src/index.js",
   "dependencies": {

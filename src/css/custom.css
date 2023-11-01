@@ -23,8 +23,9 @@
     align-items: center;
 }
 .custom-input-label-wrapper label {
-    width: auto;
+    max-width: 90%;
     word-break: break-all;
+    overflow-wrap: break-word;
 }
 .custom-input-label-wrapper input[type='checkbox'] {
     margin-top: 0;

@@ -1,7 +1,7 @@
 # React Side Projects
 👋 Hi, I am Ruwen, welcome to my React Side Projects! These projects aim to leverage multiple applications to showcase various React concepts such as props, state, useContext, useRef, useReducer, and more!
 
-**My slogan is - KEEP LEARNING !!**
+📢 **Let's repeat the slogan --- KEEP LEARNING !!**
 
 ## Project Links
 1. [to-do list](https://654a3b02f69f11297a68e433--react-comfy-quokka-ced779.netlify.app/)

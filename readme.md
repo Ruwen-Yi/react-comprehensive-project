@@ -1,9 +1,6 @@
 # React Project - Comprehensive Implementation
 
-Welcome to the React Project! This project aims to provide a comprehensive implementation of a React application, showcasing various important concepts such as props, state, and Hooks including useContext, useRef, useReducer, and more.
-
-## Project Purpose
-The main purpose of this project is to create a React application that utilizes and demonstrates a wide range of React concepts.
+Hi, I am Ruwen, welcome to my React Side Projects! These projects aim to leverage multiple applications to showcase various React concepts such as props, state, useContext, useRef, useReducer, and more!
 
 ## Project Features
 - **Props**: Learn how to pass data from parent components to child components using props. Understand the concept of prop types and how to validate them.

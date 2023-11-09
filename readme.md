@@ -3,6 +3,7 @@
 
 📢 **Let's repeat the slogan --- A DAY WITHOUT LEARNING IS A DAY WASTED !!**
 </br>
+</br>
 <img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/Ruwen-Yi/react-side-projects">
 <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/Ruwen-Yi/react-side-projects">
 

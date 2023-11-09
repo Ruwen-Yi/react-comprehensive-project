@@ -2,6 +2,8 @@
 👋 Hi, I am Ruwen, welcome to my React Side Projects! These projects aim to leverage multiple applications to showcase various React concepts such as props, state, useContext, useRef, useReducer, and more!
 
 📢 **Let's repeat the slogan --- A DAY WITHOUT LEARNING IS A DAY WASTED !!**
+<img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/Ruwen-Yi/react-side-projects">
+<img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/Ruwen-Yi/react-side-projects">
 
 ## Project Links
 1. [to-do list](https://654a3b02f69f11297a68e433--react-comfy-quokka-ced779.netlify.app/)

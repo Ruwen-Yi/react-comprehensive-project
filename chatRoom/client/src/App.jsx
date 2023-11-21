@@ -1,4 +1,4 @@
-import Chatroom from "./Chatroom.js";
+import Chatroom from "./Chatroom.jsx";
 function App() {
   return (
     <div>

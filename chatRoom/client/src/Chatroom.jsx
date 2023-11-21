@@ -27,7 +27,7 @@ export default function Chatroom() {
     return (
         <>
             <div>
-                view
+                chat view
             </div>
             <div>
                 <input type="text" id="user-input"/>

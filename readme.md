@@ -9,7 +9,7 @@
 
 ## Project Links
 1. [to-do list](https://654a3b02f69f11297a68e433--react-comfy-quokka-ced779.netlify.app/)
-2. working on 😎
+2. working on a funny chat app😎
 3. ...
 4. ..
 

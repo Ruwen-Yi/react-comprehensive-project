@@ -1,6 +1,16 @@
 import { useRef, useEffect, useState } from 'react';
+import useWebSocket from 'react-use-websocket';
 
 export default function Chatroom() {
+    const { sendMessage, lastMessage, readyState } = useWebSocket('ws://localhost:8080', {
+        onOpen: () => console.log('opened'),
+        onMessage: (e) => console.log('received: %s', e.data),
+        onError: console.error,
+        share: true,
+        filter: () => false,
+        retryOnError: true,
+        shouldReconnect: () => true
+    });
     const [text, setText] = useState(""); 
     const wsRef = useRef();
     
@@ -23,7 +33,7 @@ export default function Chatroom() {
         }
     }, []);
     
-    const sendMessage = (e) => {
+    const sendMessages = (e) => {
         wsRef.current.send(text);
         setText("");
     }
@@ -44,7 +54,7 @@ export default function Chatroom() {
                     value={text}
                     onChange={updateUserInput}
                 />
-                <button onClick={sendMessage}>submit</button>
+                <button onClick={sendMessages}>submit</button>
             </div>
         </>
     )

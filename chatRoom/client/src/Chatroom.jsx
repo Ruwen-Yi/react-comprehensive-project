@@ -4,7 +4,7 @@ import useWebSocket from 'react-use-websocket';
 export default function Chatroom() {
     const { sendMessage, lastMessage, readyState } = useWebSocket('ws://localhost:8080', {
         onOpen: () => console.log('opened'),
-        onMessage: (e) => console.log('received: %s', e.data),
+        onMessage: handleReceivedMessage,
         onError: console.error,
         share: true,
         filter: () => false,
@@ -12,7 +12,12 @@ export default function Chatroom() {
         shouldReconnect: () => true
     });
     const [text, setText] = useState(""); 
-    
+
+    function handleReceivedMessage(e) {
+        const newMessage = JSON.parse(e.data);
+        console.log(newMessage);
+    }
+
     const handleSendMessage = (e) => {
         sendMessage(text);
         setText("");

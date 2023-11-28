@@ -4,6 +4,13 @@ import { v4 as uuidv4 } from 'uuid';
 const clients = new Map();
 const server = new WebSocketServer({ port: 8080 }, () => console.log('server started'));
 
+class Message {
+    constructor(content, timestamp) {
+        this.content = content;
+        this.timestamp = timestamp;
+    }
+}
+
 server.on('connection', function connection(ws) {
     // generate a unique code for every client
     const clientId = uuidv4();
@@ -16,16 +23,12 @@ server.on('connection', function connection(ws) {
     ws.on('message', (message) => handleMessage(message, clientId));
 
     ws.on('close', () => handleDisconnect(clientId));
-
-    ws.send('This is server, nice to meet you!');
 });
 
 function handleMessage(message, clientId) {
     console.log('received: %s (from %s)', message, clientId);
-    const newMessage = {
-        content: message.toString(),
-        timestamp: Date.now()
-    }
+
+    const newMessage = new Message(message.toString(), Date.now())
     broadcastMessage(JSON.stringify(newMessage));
 }
 

@@ -17,13 +17,20 @@ server.on('connection', function connection(ws) {
 
     ws.on('close', () => handleDisconnect(clientId));
 
-    ws.send('something');
+    ws.send('This is server, nice to meet you!');
 });
 
 function handleMessage(message, clientId) {
     console.log('received: %s (from %s)', message, clientId);
+    broadcastMessage(message);
 }
 
 function handleDisconnect(clientId) {
     console.log('user %s disconnected', clientId);
+}
+
+function broadcastMessage(message) {
+    clients.forEach((ws) => {
+        ws.send(message.toString());
+    })
 }

@@ -22,7 +22,11 @@ server.on('connection', function connection(ws) {
 
 function handleMessage(message, clientId) {
     console.log('received: %s (from %s)', message, clientId);
-    broadcastMessage(message);
+    const newMessage = {
+        content: message.toString(),
+        timestamp: Date.now()
+    }
+    broadcastMessage(JSON.stringify(newMessage));
 }
 
 function handleDisconnect(clientId) {
@@ -31,6 +35,6 @@ function handleDisconnect(clientId) {
 
 function broadcastMessage(message) {
     clients.forEach((ws) => {
-        ws.send(message.toString());
+        ws.send(message);
     })
 }

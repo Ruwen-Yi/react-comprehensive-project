@@ -13,7 +13,7 @@ export default function Chatroom() {
     });
     const [text, setText] = useState(""); 
     
-    const sendMessages = (e) => {
+    const handleSendMessage = (e) => {
         sendMessage(text);
         setText("");
     }
@@ -34,7 +34,7 @@ export default function Chatroom() {
                     value={text}
                     onChange={updateUserInput}
                 />
-                <button onClick={sendMessages}>submit</button>
+                <button onClick={handleSendMessage}>submit</button>
             </div>
         </>
     )

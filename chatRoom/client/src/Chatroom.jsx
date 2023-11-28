@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useState } from 'react';
 import useWebSocket from 'react-use-websocket';
 
 export default function Chatroom() {
@@ -12,29 +12,9 @@ export default function Chatroom() {
         shouldReconnect: () => true
     });
     const [text, setText] = useState(""); 
-    const wsRef = useRef();
-    
-    // connect to websocket server on mount
-    useEffect(() => {
-        const client = new WebSocket('ws://localhost:8080');
-        client.onerror = console.error;
-        client.onopen = () => {
-            console.log('Connected');
-        };
-        client.onmessage = (e) => {
-            console.log('received: %s', e.data);
-        };
-
-        wsRef.current = client;
-
-        return () => {
-            wsRef.current.close();
-            console.log("Connection clean up")
-        }
-    }, []);
     
     const sendMessages = (e) => {
-        wsRef.current.send(text);
+        sendMessage(text);
         setText("");
     }
 

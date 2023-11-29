@@ -6,12 +6,12 @@ const server = new WebSocketServer({ port: 8080 }, () => console.log('server sta
 const clients = new Map();
 
 class Message {
-    static messageId = 0;
+    static nextMessageId = 0;
     constructor(content, timestamp, clientId) {
         this.content = content;
         this.timestamp = timestamp;
         this.clientId = clientId;
-        this.messageId = Message.messageId++;
+        this.messageId = Message.nextMessageId++;
     }
 }
 

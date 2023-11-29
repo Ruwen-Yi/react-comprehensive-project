@@ -12,10 +12,12 @@ export default function Chatroom() {
         shouldReconnect: () => true
     });
     const [text, setText] = useState(""); 
+    const [messageHistory, setMessageHistory] = useState([]);
 
     function handleReceivedMessage(e) {
         const newMessage = JSON.parse(e.data);
         console.log(newMessage);
+        setMessageHistory((prev) => [...prev, newMessage]);
     }
 
     const handleSendMessage = (e) => {
@@ -31,6 +33,14 @@ export default function Chatroom() {
         <>
             <div>
                 view
+                <ul>
+                    {messageHistory.map((message, idx) => (
+                        <>
+                        <span key={idx}>{message.content} | at {message.timestamp}</span>
+                        <br/>
+                        </>
+                    ))}
+                </ul>
             </div>
             <div>
                 <input 

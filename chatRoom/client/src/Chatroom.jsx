@@ -36,7 +36,7 @@ export default function Chatroom() {
                 <ul>
                     {messageHistory.map((message, idx) => (
                         <>
-                        <span key={idx}>{message.content} | at {message.timestamp}</span>
+                        <span key={idx}>{message.content} | at {message.timestamp} from {message.clientId}</span>
                         <br/>
                         </>
                     ))}

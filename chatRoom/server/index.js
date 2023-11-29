@@ -5,9 +5,10 @@ const clients = new Map();
 const server = new WebSocketServer({ port: 8080 }, () => console.log('server started'));
 
 class Message {
-    constructor(content, timestamp) {
+    constructor(content, timestamp, clientId) {
         this.content = content;
         this.timestamp = timestamp;
+        this.clientId = clientId;
     }
 }
 
@@ -28,7 +29,7 @@ server.on('connection', function connection(ws) {
 function handleMessage(message, clientId) {
     console.log('received: %s (from %s)', message, clientId);
 
-    const newMessage = new Message(message.toString(), Date.now())
+    const newMessage = new Message(message.toString(), Date.now(), clientId)
     broadcastMessage(JSON.stringify(newMessage));
 }
 

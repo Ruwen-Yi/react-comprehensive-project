@@ -6,6 +6,7 @@ export default function Chatroom() {
         onOpen: () => console.log('opened'),
         onMessage: handleReceivedMessage,
         onError: console.error,
+        
         share: true,
         filter: () => false,
         retryOnError: true,
@@ -14,18 +15,42 @@ export default function Chatroom() {
     const [text, setText] = useState(""); 
     const [messageHistory, setMessageHistory] = useState([]);
 
+    /**
+     * @description update the messageHistory triggered by receiving a new message.
+     * @param {WebSocketEventMap['message']} e an unparsed MessageEvent received from the WebSocket.
+     */
     function handleReceivedMessage(e) {
         const newMessage = JSON.parse(e.data);
         console.log(newMessage);
         setMessageHistory((prev) => [...prev, newMessage]);
     }
 
-    const handleSendMessage = (e) => {
+    /**
+     * @description send user message to the websocket triggered by user hitting submit.
+     */
+    function handleSendMessage() {
         sendMessage(text);
+        // clear the text input area.
         setText("");
     }
 
-    const updateUserInput = (e) => {
+    /**
+     * 
+     * @param {number} timestamp milliseconds from Data.now()
+     * @returns a formatted local time string 'mm/dd hh:mm'
+     */
+    function getLocalTimeFormatted(timestamp) {
+        const date = new Date(timestamp);
+        
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+    
+        return `${month}/${day} ${hours}:${minutes}`;
+    }
+
+    function updateUserInput(e) {
         setText(e.target.value);
     }
 
@@ -55,13 +80,3 @@ export default function Chatroom() {
     )
 }
 
-function getLocalTimeFormatted(timestamp) {
-    const date = new Date(timestamp);
-    
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-
-    return `${month}/${day} ${hours}:${minutes}`;
-}

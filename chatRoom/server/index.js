@@ -1,14 +1,17 @@
 import { WebSocketServer } from 'ws';
 import { v4 as uuidv4 } from 'uuid';
 
-const clients = new Map();
 const server = new WebSocketServer({ port: 8080 }, () => console.log('server started'));
 
+const clients = new Map();
+
 class Message {
+    static messageId = 0;
     constructor(content, timestamp, clientId) {
         this.content = content;
         this.timestamp = timestamp;
         this.clientId = clientId;
+        this.messageId = Message.messageId++;
     }
 }
 

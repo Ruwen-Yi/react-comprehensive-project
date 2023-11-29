@@ -34,11 +34,11 @@ export default function Chatroom() {
             <div>
                 view
                 <ul>
-                    {messageHistory.map(({content, timestamp, clientId}, idx) => (
-                        <>
-                        <span key={idx}>{content} | at {getLocalTimeFormatted(timestamp)} from {clientId}</span>
-                        <br/>
-                        </>
+                    {messageHistory.map(({content, timestamp, clientId, messageId}) => (
+                        <span key={messageId}>
+                            {content} | at {getLocalTimeFormatted(timestamp)} from {clientId}
+                            <br/>
+                        </span>
                     ))}
                 </ul>
             </div>

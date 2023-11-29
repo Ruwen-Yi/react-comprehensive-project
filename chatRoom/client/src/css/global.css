@@ -6,7 +6,7 @@ body {
     width: 100vw;       /* set to 100% viewport width */
     min-height: 100vh;  /* set to 100% viewport height */
 
-    background: linear-gradient(90deg, rgba(155,230,140,1) 0%, rgba(138,243,255,1) 100%);
+    background: #f4f7f6;
 
     display: flex;
     justify-content: center;

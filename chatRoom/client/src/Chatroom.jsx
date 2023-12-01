@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useWebSocket from 'react-use-websocket';
+import ChatHistory from './ChatHistory';
 
 export default function Chatroom() {
     const { sendMessage, lastMessage, readyState } = useWebSocket('ws://localhost:8080', {
@@ -34,22 +35,6 @@ export default function Chatroom() {
         setText("");
     }
 
-    /**
-     * 
-     * @param {number} timestamp milliseconds from Data.now()
-     * @returns a formatted local time string 'mm/dd hh:mm'
-     */
-    function getLocalTimeFormatted(timestamp) {
-        const date = new Date(timestamp);
-        
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-        const hours = date.getHours().toString().padStart(2, '0');
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-    
-        return `${month}/${day} ${hours}:${minutes}`;
-    }
-
     function updateUserInput(e) {
         setText(e.target.value);
     }
@@ -57,15 +42,8 @@ export default function Chatroom() {
     return (
         <>
             <div className="h-4/5 w-full bg-slate-600 p-3">
-                view
-                <ul>
-                    {messageHistory.map(({content, timestamp, clientId, messageId}) => (
-                        <span key={messageId}>
-                            {content} | at {getLocalTimeFormatted(timestamp)} from {clientId}
-                            <br/>
-                        </span>
-                    ))}
-                </ul>
+                history
+                <ChatHistory messageHistory={messageHistory} />
             </div>
             <div className="flex items-center justify-center h-1/5">
                 <textarea 

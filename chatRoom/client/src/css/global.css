@@ -1,0 +1,25 @@
+html {
+    font-family: sans-serif;
+}
+
+body {
+    width: 100vw;       /* set to 100% viewport width */
+    min-height: 100vh;  /* set to 100% viewport height */
+
+    background: #f4f7f6;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+*,
+*::before,
+*::after {              /* ::before/after make sure this style also applies to any pseudo-elements */
+    margin:0;           /* avoid being disturbed by default spacing */
+    padding: 0;
+    box-sizing: border-box;
+    
+    text-decoration: none;
+    list-style: none;
+}

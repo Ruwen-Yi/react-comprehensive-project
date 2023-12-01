@@ -1,0 +1,16 @@
+{
+  "name": "chatroom-server",
+  "version": "1.0.0",
+  "description": "chatroom of the server side",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "uuid": "^9.0.1",
+    "ws": "^8.14.2"
+  }
+}

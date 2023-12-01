@@ -15,14 +15,15 @@ export default function ChatHistory({ messageHistory }) {
     
         return `${month}/${day} ${hours}:${minutes}`;
     }
-    
+
     return (
         <ul>
             {messageHistory.map(({content, timestamp, clientId, messageId}) => (
-                <span key={messageId}>
-                    {content} | at {getLocalTimeFormatted(timestamp)} from {clientId}
-                    <br/>
-                </span>
+                <div>
+                    <span key={messageId}>
+                        {content} | at {getLocalTimeFormatted(timestamp)} from {clientId}
+                    </span>
+                </div>
             ))}
         </ul>
     )

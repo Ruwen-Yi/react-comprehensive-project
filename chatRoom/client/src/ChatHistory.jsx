@@ -20,18 +20,29 @@ export default function ChatHistory({ messageHistory }) {
         <div className="h-4/5 w-full bg-slate-600 p-3 overflow-y-auto">
             <ul>
                 {messageHistory.map(({content, timestamp, clientId, messageId}) => (
-                    <>
-                        <div className="avatar">
-                            <div className="w-[9%] max-w-2xl rounded-full">
+                    <li className="flex justify-start">
+                        <div class="avatar w-[9%] h-[9%] max-w-[3rem]">
+                            <div class="rounded-full">
                                 <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                             </div>
                         </div>
-                        <div className="rounded bg-slate-400 p-3 w-fit max-w-[66%] mb-5 break-words">
-                            <span key={messageId}>
-                                {content} | at {getLocalTimeFormatted(timestamp)} from {clientId}
-                            </span>
+                        {/* <div className="w-[9%] max-w-2xl rounded-full overflow-hidden inline-flex">
+                            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        </div> */}
+                        <div className="inline-block mb-5">
+                            <div className="rounded bg-slate-400 p-3 w-fit max-w-[66%] break-words">
+                                <span key={messageId}>
+                                    {content}
+                                </span>
+                            </div>
+                            <div className="text-slate-300">
+                                <span>
+                                    {getLocalTimeFormatted(timestamp)} 
+                                </span>
+                            </div>
+                            from {clientId}
                         </div>
-                    </>
+                    </li>
                 ))}
             </ul>
         </div>

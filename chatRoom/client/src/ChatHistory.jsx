@@ -26,7 +26,7 @@ export default function ChatHistory({ messageHistory }) {
                                 <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                             </div>
                         </div>
-                        <div className="rounded bg-slate-400 p-3 w-fit max-w-[66%] mb-5">
+                        <div className="rounded bg-slate-400 p-3 w-fit max-w-[66%] mb-5 break-words">
                             <span key={messageId}>
                                 {content} | at {getLocalTimeFormatted(timestamp)} from {clientId}
                             </span>

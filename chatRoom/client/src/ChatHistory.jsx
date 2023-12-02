@@ -17,14 +17,23 @@ export default function ChatHistory({ messageHistory }) {
     }
 
     return (
-        <ul>
-            {messageHistory.map(({content, timestamp, clientId, messageId}) => (
-                <div>
-                    <span key={messageId}>
-                        {content} | at {getLocalTimeFormatted(timestamp)} from {clientId}
-                    </span>
-                </div>
-            ))}
-        </ul>
+        <div className="h-4/5 w-full bg-slate-600 p-3 overflow-y-auto">
+            <ul>
+                {messageHistory.map(({content, timestamp, clientId, messageId}) => (
+                    <>
+                        <div className="avatar">
+                            <div className="w-[9%] max-w-2xl rounded-full">
+                                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            </div>
+                        </div>
+                        <div className="rounded bg-slate-400 p-3 w-fit max-w-[66%] mb-5">
+                            <span key={messageId}>
+                                {content} | at {getLocalTimeFormatted(timestamp)} from {clientId}
+                            </span>
+                        </div>
+                    </>
+                ))}
+            </ul>
+        </div>
     )
 }

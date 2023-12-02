@@ -41,10 +41,7 @@ export default function Chatroom() {
 
     return (
         <>
-            <div className="h-4/5 w-full bg-slate-600 p-3">
-                history
-                <ChatHistory messageHistory={messageHistory} />
-            </div>
+            <ChatHistory messageHistory={messageHistory} />
             <div className="flex items-center justify-center h-1/5">
                 <textarea 
                     cols="30" 

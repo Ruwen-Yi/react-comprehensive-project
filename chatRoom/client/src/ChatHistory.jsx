@@ -18,7 +18,7 @@ export default function ChatHistory({ messageHistory }) {
     return (
         <div className="h-4/5 w-full overflow-y-auto bg-slate-600 p-3">
             <ul>
-                {messageHistory.map(({ content, timestamp, clientId, messageId }) => (
+                {messageHistory.map(({ content, timestamp, clientId, messageId, isCurrentClient }) => (
                     <li className="flex w-full justify-start">
                         {/* set up avartar */}
                         <div class="avatar h-[3rem] w-[3rem]">
@@ -32,7 +32,7 @@ export default function ChatHistory({ messageHistory }) {
                                 {/* set up an left arrow*/}
                                 <div className="absolute left-[-0.4rem] top-[0.5rem] z-[1] h-0 w-0 border-[0.5rem] border-l-0 border-transparent border-r-slate-400"></div>
                                 {/* set up message content*/}
-                                <span key={messageId}>{content}</span>
+                                <span key={messageId}>{content}{isCurrentClient ? "(my message)" : null}</span>
                             </div>
                             <div className="text-xs text-slate-300">
                                 <span>{getLocalTimeFormatted(timestamp)}</span>

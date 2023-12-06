@@ -8,12 +8,12 @@ const server = new WebSocketServer({ port: 8080 }, () => console.log('server sta
 const clients = new Map();
 
 class Message {
-    static nextMessageId = 0;
     constructor(content, timestamp, clientId) {
         this.content = content;
         this.timestamp = timestamp;
         this.clientId = clientId;
-        this.messageId = Message.nextMessageId++;
+        this.messageId = uuidv4();
+        this.isCurrentClient = false;
     }
 }
 
@@ -31,19 +31,40 @@ server.on('connection', function connection(ws) {
     ws.on('close', () => handleDisconnect(clientId));
 });
 
-function handleMessage(message, clientId) {
-    console.log('received: %s (from %s)', message, clientId);
-
-    const newMessage = new Message(message.toString(), Date.now(), clientId)
-    broadcastMessage(JSON.stringify(newMessage));
-}
-
 function handleDisconnect(clientId) {
     console.log('user %s disconnected', clientId);
 }
 
-function broadcastMessage(message) {
-    clients.forEach((ws) => {
-        ws.send(message);
+function handleMessage(message, clientId) {
+    console.log('received: %s (from %s)', message, clientId);
+
+    const newMessage = new Message(message.toString(), Date.now(), clientId);
+
+    storeNewMessage(newMessage)
+        .then((result) => {
+            result.acknowledged ? broadcastMessage(newMessage) : null;
+        })
+        .catch(console.dir);
+}
+
+function broadcastMessage(newMessage) {
+    clients.forEach((ws, clientId) => {
+        if (clientId === newMessage.clientId) {
+            ws.send(JSON.stringify({ ...newMessage, isCurrentClient: true }));
+        }
+        else {
+            ws.send(JSON.stringify(newMessage));
+        }
     })
+}
+
+async function storeNewMessage(newMessage) {
+    try {
+        const result = await database.collection("testcollection").insertOne(newMessage);
+        console.log(result);
+        
+        return result;
+    } catch (error) {
+        console.error(error)
+    }
 }

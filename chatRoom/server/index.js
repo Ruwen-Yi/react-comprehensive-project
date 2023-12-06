@@ -1,17 +1,19 @@
 import { WebSocketServer } from 'ws';
 import { v4 as uuidv4 } from 'uuid';
+import './loadEnvironment.js'
+import database from './db/connection.js';
 
 const server = new WebSocketServer({ port: 8080 }, () => console.log('server started'));
 
 const clients = new Map();
 
 class Message {
-    static nextMessageId = 0;
     constructor(content, timestamp, clientId) {
         this.content = content;
         this.timestamp = timestamp;
         this.clientId = clientId;
-        this.messageId = Message.nextMessageId++;
+        this.messageId = uuidv4();
+        this.isCurrentClient = false;
     }
 }
 
@@ -29,19 +31,43 @@ server.on('connection', function connection(ws) {
     ws.on('close', () => handleDisconnect(clientId));
 });
 
-function handleMessage(message, clientId) {
-    console.log('received: %s (from %s)', message, clientId);
-
-    const newMessage = new Message(message.toString(), Date.now(), clientId)
-    broadcastMessage(JSON.stringify(newMessage));
-}
-
 function handleDisconnect(clientId) {
     console.log('user %s disconnected', clientId);
 }
 
-function broadcastMessage(message) {
-    clients.forEach((ws) => {
-        ws.send(message);
+// when new message comes, store it into the database and broadcast to all clients
+function handleMessage(message, clientId) {
+    console.log('received: %s (from %s)', message, clientId);
+
+    const newMessage = new Message(message.toString(), Date.now(), clientId);
+
+    storeNewMessage(newMessage)
+        .then((result) => {
+            result.acknowledged ? broadcastMessage(newMessage) : null;
+        })
+        .catch(console.dir);
+}
+
+function broadcastMessage(newMessage) {
+    clients.forEach((ws, clientId) => {
+        // indicate whether the message was sent by the current client
+        if (clientId === newMessage.clientId) {
+            ws.send(JSON.stringify({ ...newMessage, isCurrentClient: true }));
+        }
+        else {
+            ws.send(JSON.stringify(newMessage));
+        }
     })
+}
+
+// store a new message to database
+async function storeNewMessage(newMessage) {
+    try {
+        const result = await database.collection("testcollection").insertOne(newMessage);
+        console.log(result);
+        
+        return result;
+    } catch (error) {
+        console.error(error)
+    }
 }

@@ -15,7 +15,16 @@ export default function ChatHistory({ messageHistory }) {
         return `${month}/${day} ${hours}:${minutes}`;
     }
 
-    function layoutMessage({ content, timestamp, clientId, messageId, isCurrentClient }) {
+    /**
+     * 
+     * @param {*} message a history message object
+     * @returns a message element with proper layout, 
+     *          if the message sent by the current client, message set on the right side
+     */
+    function layoutMessage(message) {
+        const { content, timestamp, clientId, messageId, isCurrentClient } = message;
+        let localTime = getLocalTimeFormatted(timestamp);
+
         if (isCurrentClient) {
             return (
                 <li 
@@ -39,7 +48,7 @@ export default function ChatHistory({ messageHistory }) {
                             </span>
                         </div>
                         <div className="text-xs text-slate-300 text-right">
-                            <span>{getLocalTimeFormatted(timestamp)}</span>
+                            <span>{localTime}</span>
                         </div>
                     </div>
                 </li>
@@ -68,7 +77,7 @@ export default function ChatHistory({ messageHistory }) {
                             </span>
                         </div>
                         <div className="text-xs text-slate-300 text-right">
-                            <span>{getLocalTimeFormatted(timestamp)}</span>
+                            <span>{localTime}</span>
                         </div>
                     </div>
                 </li>

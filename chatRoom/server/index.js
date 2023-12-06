@@ -35,6 +35,7 @@ function handleDisconnect(clientId) {
     console.log('user %s disconnected', clientId);
 }
 
+// when new message comes, store it into the database and broadcast to all clients
 function handleMessage(message, clientId) {
     console.log('received: %s (from %s)', message, clientId);
 
@@ -49,6 +50,7 @@ function handleMessage(message, clientId) {
 
 function broadcastMessage(newMessage) {
     clients.forEach((ws, clientId) => {
+        // indicate whether the message was sent by the current client
         if (clientId === newMessage.clientId) {
             ws.send(JSON.stringify({ ...newMessage, isCurrentClient: true }));
         }
@@ -58,6 +60,7 @@ function broadcastMessage(newMessage) {
     })
 }
 
+// store a new message to database
 async function storeNewMessage(newMessage) {
     try {
         const result = await database.collection("testcollection").insertOne(newMessage);

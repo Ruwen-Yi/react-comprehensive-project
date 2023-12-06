@@ -1,6 +1,7 @@
 import { WebSocketServer } from 'ws';
 import { v4 as uuidv4 } from 'uuid';
-import { databaseClient } from './database.js';
+import './loadEnvironment.js'
+import database from './db/connection.js';
 
 const server = new WebSocketServer({ port: 8080 }, () => console.log('server started'));
 
@@ -46,18 +47,3 @@ function broadcastMessage(message) {
         ws.send(message);
     })
 }
-
-// test the database connection
-async function run() {
-    try {
-      // Connect the client to the server	(optional starting in v4.7)
-      await databaseClient.connect();
-      // Send a ping to confirm a successful connection
-      await databaseClient.db("testdb").command({ ping: 1 });
-      console.log("Pinged your deployment. You successfully connected to MongoDB!");
-    } finally {
-      // Ensures that the client will close when you finish/error
-      await databaseClient.close();
-    }
-}
-run().catch(console.dir);

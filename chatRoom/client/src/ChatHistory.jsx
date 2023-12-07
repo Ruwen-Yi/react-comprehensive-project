@@ -1,4 +1,13 @@
+import { useRef, useEffect } from 'react';
+
 export default function ChatHistory({ messageHistory }) {
+    const historyContainerRef = useRef(null);
+    
+    useEffect(() => {
+        const historyContainer = historyContainerRef.current;
+        historyContainer.scrollTop = historyContainer.scrollHeight;
+    }, [messageHistory]);
+
     /**
      *
      * @param {number} timestamp milliseconds from Data.now()
@@ -16,80 +25,74 @@ export default function ChatHistory({ messageHistory }) {
     }
 
     /**
-     * 
+     *
      * @param {*} message a history message object
-     * @returns a message element with proper layout, 
+     * @returns a message element with proper layout,
      *          if the message sent by the current client, message set on the right side
      */
     function layoutMessage(message) {
-        const { content, timestamp, clientId, messageId, isCurrentClient } = message;
+        const { content, timestamp, clientId, messageId, isCurrentClient } =
+            message;
         let localTime = getLocalTimeFormatted(timestamp);
 
         if (isCurrentClient) {
             return (
-                <li 
-                    key={messageId} 
-                    className={"flex w-full justify-end"}
+                <li
+                    key={messageId}
+                    className="flex w-full justify-end"
                 >
                     {/* set up avartar */}
-                    <div className={"avatar h-[3rem] w-[3rem] order-2"}>
+                    <div className="avatar order-2 h-[3rem] w-[3rem]">
                         <div className="rounded-full">
                             <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                         </div>
                     </div>
                     {/* set up message */}
-                    <div className="mb-5 mr-4 mt-4 inline-flex flex-col items-end max-w-[66%]">
+                    <div className="mb-5 mr-4 mt-4 inline-flex max-w-[66%] flex-col items-end">
                         <div className="relative w-fit max-w-full break-words rounded bg-slate-300 p-[0.5rem]">
                             {/* set up the message arrow */}
                             <div className="absolute right-[-0.4rem] top-[0.5rem] z-[1] h-0 w-0 border-[0.5rem] border-r-0 border-transparent border-l-slate-300"></div>
                             {/* set up message content*/}
-                            <span key={messageId}>
-                                {content}
-                            </span>
+                            <span key={messageId}>{content}</span>
                         </div>
-                        <div className="text-xs text-slate-300 text-right">
+                        <div className="text-right text-xs text-slate-300">
                             <span>{localTime}</span>
                         </div>
                     </div>
                 </li>
-            )
-        }
-        else {
+            );
+        } else {
             return (
-                <li 
-                    key={messageId} 
-                    className={"flex w-full justify-start"}
+                <li
+                    key={messageId}
+                    className="flex w-full justify-start"
                 >
                     {/* set up avartar */}
-                    <div className={"avatar h-[3rem] w-[3rem]"}>
+                    <div className="avatar h-[3rem] w-[3rem]">
                         <div className="rounded-full">
                             <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                         </div>
                     </div>
                     {/* set up message */}
-                    <div className="mb-5 ml-4 mt-4 inline-flex flex-col max-w-[66%]">
+                    <div className="mb-5 ml-4 mt-4 inline-flex max-w-[66%] flex-col items-start">
                         <div className="relative w-fit max-w-full break-words rounded bg-slate-400 p-[0.5rem]">
                             {/* set up the message arrow */}
                             <div className="absolute left-[-0.4rem] top-[0.5rem] z-[1] h-0 w-0 border-[0.5rem] border-l-0 border-transparent border-r-slate-400"></div>
                             {/* set up message content*/}
-                            <span key={messageId}>
-                                {content}
-                            </span>
+                            <span key={messageId}>{content}</span>
                         </div>
-                        <div className="text-xs text-slate-300 text-right">
+                        <div className="text-right text-xs text-slate-300">
                             <span>{localTime}</span>
                         </div>
                     </div>
                 </li>
-            )
+            );
         }
     }
 
     return (
-        <div className="h-4/5 w-full overflow-y-auto bg-slate-600 p-3">
-            <ul>
-                {messageHistory.map(message => layoutMessage(message))}
-            </ul>
+        <div className="h-4/5 w-full overflow-y-auto bg-slate-600 p-3" ref={historyContainerRef}>
+            <ul>{messageHistory.map((message) => layoutMessage(message))}</ul>
         </div>
     );
 }

@@ -21,9 +21,17 @@ export default function Chatroom() {
      * @param {WebSocketEventMap['message']} e an unparsed MessageEvent received from the WebSocket.
      */
     function handleReceivedMessage(e) {
-        const newMessage = JSON.parse(e.data);
-        console.log(newMessage);
-        setMessageHistory((prev) => [...prev, newMessage]);
+        const messages = JSON.parse(e.data);
+
+        // check the type of the received message.
+        if (messages.type === "new") {
+            // a new message is an object
+            setMessageHistory((prev) => [...prev, messages]);
+        }
+        else if (messages.type === "history") {
+            // history messages is an array, therefore use spread operator
+            setMessageHistory((prev) => [...prev, ...messages.historyMessages]);
+        }
     }
 
     /**

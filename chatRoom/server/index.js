@@ -55,11 +55,19 @@ function broadcastMessage(newMessage) {
     clients.forEach((ws, clientId) => {
         // indicate whether the message was sent by the current client
         if (clientId === newMessage.clientId) {
-            ws.send(JSON.stringify({ ...newMessage, isCurrentClient: true }));
+            ws.send(JSON.stringify({
+                type: "new",
+                ...newMessage,
+                isCurrentClient: true
+            }));
         }
         else {
-            ws.send(JSON.stringify(newMessage));
+            ws.send(JSON.stringify({
+                type: "new",
+                ...newMessage
+            }));
         }
+
     })
 }
 
@@ -68,7 +76,7 @@ async function storeNewMessage(newMessage) {
     try {
         const result = await database.collection(process.env.DB_COLL).insertOne(newMessage);
         console.log(result);
-        
+
         return result;
     } catch (error) {
         console.error(error)
@@ -79,8 +87,12 @@ async function sendHistoryMessages(ws) {
     try {
         const cursor = database.collection(process.env.DB_COLL).find({}, { projection: { _id: 0 } });
         const historyMessages = await cursor.toArray();
-        console.log(historyMessages);
-        // ws.send()
+        
+        ws.send(JSON.stringify({
+            type: "history",
+            historyMessages
+        }));
+
         await cursor.close();
     } catch (error) {
         console.error(error)

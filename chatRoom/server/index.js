@@ -29,6 +29,9 @@ server.on('connection', function connection(ws) {
     ws.on('message', (message) => handleMessage(message, clientId));
 
     ws.on('close', () => handleDisconnect(clientId));
+
+    // send history messages to the client
+    sendHistoryMessages(ws);
 });
 
 function handleDisconnect(clientId) {
@@ -63,7 +66,7 @@ function broadcastMessage(newMessage) {
 // store a new message to database
 async function storeNewMessage(newMessage) {
     try {
-        const result = await database.collection("testcollection").insertOne(newMessage);
+        const result = await database.collection(process.env.DB_COLL).insertOne(newMessage);
         console.log(result);
         
         return result;
@@ -71,3 +74,26 @@ async function storeNewMessage(newMessage) {
         console.error(error)
     }
 }
+
+async function sendHistoryMessages(ws) {
+    try {
+        const cursor = database.collection(process.env.DB_COLL).find();
+        const historyMessages = await cursor.toArray();
+        return historyMessages;
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
+/* 
+document structure:
+{
+    _id: ObjectId,
+    content: String,
+    timestamp: Number,
+    clientId: String,
+    messageId: String,
+    isCurrentClient: Boolean
+}
+*/

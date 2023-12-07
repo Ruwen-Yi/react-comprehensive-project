@@ -77,9 +77,11 @@ async function storeNewMessage(newMessage) {
 
 async function sendHistoryMessages(ws) {
     try {
-        const cursor = database.collection(process.env.DB_COLL).find();
+        const cursor = database.collection(process.env.DB_COLL).find({}, { projection: { _id: 0 } });
         const historyMessages = await cursor.toArray();
-        return historyMessages;
+        console.log(historyMessages);
+        // ws.send()
+        await cursor.close();
     } catch (error) {
         console.error(error)
     }

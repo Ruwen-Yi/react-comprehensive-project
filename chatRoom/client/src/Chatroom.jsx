@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useWebSocket from 'react-use-websocket';
 import ChatHistory from './ChatHistory';
 
@@ -23,11 +23,14 @@ export default function Chatroom() {
     function handleReceivedMessage(e) {
         const messages = JSON.parse(e.data);
 
+        // check the type of the received message.
         if (messages.type === "new") {
-            setMessageHistory((prev) => [...prev, message.newMessage]);
+            // a new message is an object
+            setMessageHistory((prev) => [...prev, messages]);
         }
         else if (messages.type === "history") {
-            setMessageHistory((prev) => [...prev, message.historyMessages]);
+            // history messages is an array, therefore use spread operator
+            setMessageHistory((prev) => [...prev, ...messages.historyMessages]);
         }
     }
 
